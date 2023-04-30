@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "3BCFE1A4-1BD6-4E3C-8CA2-6AC6E0BD0BA8"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6 - a5be9e69d0d3ee52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.ViewController.collectionView.getter : Swift.Optional&lt;__C.UICollectionView&gt;"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6 - 942ed6e4def5de5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.ViewController.collectionView.setter : Swift.Optional&lt;__C.UICollectionView&gt;"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6 - bb1c7039b208622d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.ViewController.collectionView.modify : Swift.Optional&lt;__C.UICollectionView&gt;"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6 - 80218de579a84862"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.ViewController.collectionView.modify : Swift.Optional&lt;__C.UICollectionView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6 - d8416770db0b4e5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; BNet_Test.ViewController"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "2445D51A-5235-4AC9-BE75-F5FFC8518CA6 - d689dcebae0cb217"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;BNet_Test.ViewController&gt;"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "231B9174-2D2D-4C2E-BBF9-363D205A1E68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

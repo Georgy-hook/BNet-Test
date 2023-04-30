@@ -1,0 +1,73 @@
+//
+//  imageCell.swift
+//  BNet Test
+//
+//  Created by Georgy on 29.04.2023.
+//
+
+import UIKit
+import SnapKit
+
+class ImageCell: UICollectionViewCell{
+    // MARK: - Public
+    func configure (image: UIImage?) {
+        imageView.image = image
+    }
+    
+    // MARK: - init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.borderWidth = 1
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // MARK: - private properties
+    private let imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    private let labelHeader: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.lineBreakMode = .byWordWrapping
+        label.text = "БОЛЕЗНИ ЗЕРНОВЫХ КУЛЬТУР"
+        label.numberOfLines = 2
+        return label
+    }()
+    private let labelDescription: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.lineBreakMode = .byWordWrapping
+        label.text = "Среди болезней зерновых культур в настоящее время наиболь­ шую опасность представляют ..."
+        label.numberOfLines = 0
+        return label
+    }()
+}
+// MARK: - private methods
+private extension ImageCell{
+    func initialize(){
+        contentView.addSubview(imageView)
+        imageView.snp.makeConstraints{make in
+            make.height.equalTo(140)
+            make.top.trailing.leading.equalToSuperview().inset(12)
+            //make.size.equalTo(10)
+           // make.edges.equalToSuperview().inset(12)
+            
+        }
+        contentView.addSubview(labelHeader)
+        labelHeader.snp.makeConstraints{make in
+            make.top.equalTo(imageView.snp.bottomMargin).offset(12)
+            make.trailing.leading.equalToSuperview().inset(12)
+        }
+        contentView.addSubview(labelDescription)
+        labelDescription.snp.makeConstraints{make in
+            make.top.equalTo(labelHeader.snp.bottomMargin).offset(6)
+            make.trailing.leading.equalToSuperview().inset(12)
+            
+        }
+    }
+}
