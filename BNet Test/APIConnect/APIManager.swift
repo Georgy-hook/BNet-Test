@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IndexLoading {
     func loadIndex(handler: @escaping (Result<Drug, Error>) -> Void)
@@ -47,20 +48,43 @@ enum ApiType {
     }
     //Собираем ссылку
     var url: URL {
+        print(path)
         guard let baseUrl = URL(string: baseURL) else{
             preconditionFailure("Unable to construct BaseURL")
         }
-        guard let url = URL(string: path, relativeTo: URL(string: baseURL)) else{
+        guard let encodedPath = path.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)else {
+            preconditionFailure("Unable to construct encodedPath")
+        }
+     
+        guard let url = URL(string: encodedPath, relativeTo: baseUrl) else{
             preconditionFailure("Unable to construct URL")
         }
         return url
     }
 }
 
+// MARK: - Класс отвечающий за загрузку данных с сервера BNet
 class APIManager{
     static let shared = APIManager()
     private let networkClient = NetworkClient()
     
+    func downloadImage(from idImage: String, handler: @escaping (UIImage) -> Void) {
+        print("Download Started")
+        let url = ApiType.getImage(id: idImage).url
+        networkClient.getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            // always update the UI from the main thread
+            DispatchQueue.main.async() { [weak self] in
+                guard let image = UIImage(data: data) else{
+                    print("Download Image Error")
+                    return
+                }
+                handler(image)
+            }
+        }
+    }
     
     func loadIndex(limit:Int,offset:Int,handler: @escaping (Result<Drug, Error>) -> Void) {
         networkClient.fetch(url: ApiType.getIndex(limit: limit, offset: offset).url){result in

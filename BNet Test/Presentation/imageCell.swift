@@ -17,13 +17,15 @@ class ImageCell: UICollectionViewCell{
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layer.borderWidth = 1
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.backgroundColor = UIColor.white
         initialize()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     // MARK: - private properties
     private let imageView: UIImageView = {
         let view = UIImageView()
@@ -47,16 +49,21 @@ class ImageCell: UICollectionViewCell{
         return label
     }()
 }
+
 // MARK: - private methods
 private extension ImageCell{
     func initialize(){
+        //Shadow init
+        contentView.layer.masksToBounds = false
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        contentView.layer.shadowRadius = 4
+
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints{make in
             make.height.equalTo(140)
             make.top.trailing.leading.equalToSuperview().inset(12)
-            //make.size.equalTo(10)
-           // make.edges.equalToSuperview().inset(12)
-            
         }
         contentView.addSubview(labelHeader)
         labelHeader.snp.makeConstraints{make in

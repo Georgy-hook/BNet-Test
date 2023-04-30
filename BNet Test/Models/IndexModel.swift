@@ -16,9 +16,9 @@ import Foundation
 struct DrugElement: Codable {
     let id: Int?
     let image: String?
-    let categories: Categories?
+    //let categories: Categories?
     let name, description, documentation: String?
-    let fields: [Field]?
+    //let fields: [Field]?
 }
 
 // MARK: - Categories

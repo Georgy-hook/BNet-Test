@@ -13,14 +13,31 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        IndexLoader().loadIndex{result in
-            print(result)
-            
+        APIManager().loadIndex(limit: 10, offset: 40){[weak self] result in
+            guard let self = self else{
+                return
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                switch result{
+                case .success(let index):
+                    index.forEach{
+                        APIManager().downloadImage(from: $0.image!){ [weak self] image in
+                            guard let self = self else { return }
+                            self.images.append(image)
+                            collectionView.reloadData()
+                        }
+                        
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
     //MARK: - Private properties
     private var collectionView: UICollectionView!
-    private var images: [UIImage?] = [UIImage(systemName: "star"),UIImage(systemName: "chevron.left"),UIImage(systemName: "star"),UIImage(systemName: "star"),UIImage(systemName: "chevron.left"),UIImage(systemName: "star")]
+    private var images: [UIImage?] = []
     private let myNavigationBar: UINavigationBar = {
         let navigationBar = UINavigationBar()
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +91,6 @@ private extension ViewController{
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.layer.borderWidth = 1
     }
   
 }
