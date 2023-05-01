@@ -10,8 +10,10 @@ import SnapKit
 
 class ImageCell: UICollectionViewCell{
     // MARK: - Public
-    func configure (image: UIImage?) {
-        imageView.image = image
+    func configure (with elem:CellFillElement) {
+        imageView.image = elem.image
+        labelHeader.text = elem.header
+        labelDescription.text = elem.description
     }
     
     // MARK: - init
@@ -36,7 +38,6 @@ class ImageCell: UICollectionViewCell{
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.lineBreakMode = .byWordWrapping
-        label.text = "БОЛЕЗНИ ЗЕРНОВЫХ КУЛЬТУР"
         label.numberOfLines = 2
         return label
     }()
@@ -44,8 +45,7 @@ class ImageCell: UICollectionViewCell{
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.lineBreakMode = .byWordWrapping
-        label.text = "Среди болезней зерновых культур в настоящее время наиболь­ шую опасность представляют ..."
-        label.numberOfLines = 0
+        label.numberOfLines = 5
         return label
     }()
 }

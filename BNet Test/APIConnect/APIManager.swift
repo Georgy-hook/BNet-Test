@@ -16,7 +16,7 @@ private enum LoaderError: Error {
 }
 enum ApiType {
     //Типы запросов
-    case getIndex(limit:Int, offset:Int)
+    case getIndex(limit:Int? = nil, offset:Int? = nil, search:String? = nil)
     case getItem(id: Int)
     case getImage(id: String)
     
@@ -38,7 +38,13 @@ enum ApiType {
         switch self{
         case .getItem(let id):
             return "api/ppp/item?id=\(id)"
-        case .getIndex(let limit, let offset):
+        case .getIndex(let limit, let offset, let search):
+            guard let limit = limit, let offset = offset else{
+                guard let search = search else{
+                    return "api/ppp/index"
+                }
+                return "api/ppp/index?search=\(search)"
+            }
             return "api/ppp/index?offset=\(offset)&limit=\(limit)"
         case .getImage(let path):
             return path
@@ -86,8 +92,8 @@ class APIManager{
         }
     }
     
-    func loadIndex(limit:Int,offset:Int,handler: @escaping (Result<Drug, Error>) -> Void) {
-        networkClient.fetch(url: ApiType.getIndex(limit: limit, offset: offset).url){result in
+    func loadIndex(limit:Int?,offset:Int?,search:String?,handler: @escaping (Result<Drug, Error>) -> Void) {
+        networkClient.fetch(url: ApiType.getIndex(limit: limit, offset: offset,search: search).url){result in
             switch result{
             case .success(let data):
                 do {
