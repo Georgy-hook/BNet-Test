@@ -138,8 +138,8 @@
             filePath = "BNet Test/APIConnect/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "url"
             landmarkType = "24">
          </BreakpointContent>
