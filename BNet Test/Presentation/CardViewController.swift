@@ -11,6 +11,11 @@ class CardViewController: UIViewController {
     
     // MARK: - Properties
     private var imageToDownload:String = ""
+    private let contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
     private let imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: "ImageTest1")!
@@ -72,8 +77,9 @@ class CardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
+        view.backgroundColor =  UIColor(red: 111/255, green: 181/255, blue: 75/255, alpha: 1)
+        //view.backgroundColor = .white
+
         setupViews()
         setupConstraints()
     }
@@ -87,15 +93,21 @@ class CardViewController: UIViewController {
         downloadImage(from: imageToDownload)
     }
     private func setupViews() {
-        view.addSubview(imageView)
-        view.addSubview(iconImageView)
-        view.addSubview(starButton)
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(buyButton)
+        view.addSubview(contentView)
+        contentView.addSubview(imageView)
+        contentView.addSubview(iconImageView)
+        contentView.addSubview(starButton)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(buyButton)
     }
     
     private func setupConstraints() {
+        contentView.snp.makeConstraints{make in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            
+        }
         imageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
             make.centerX.equalToSuperview()

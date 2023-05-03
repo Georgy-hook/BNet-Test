@@ -27,8 +27,6 @@ class ViewController: UIViewController {
         return .lightContent //задаем белый цвет для statusBar
     }
     //MARK: - Private properties
-    //private var searchTextField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    //private var searchButton: UIButton?
     private var isSearchModeOn = false
     private var isDataLoaded = false
     private var page = 0
@@ -77,7 +75,8 @@ class ViewController: UIViewController {
 private extension ViewController{
    
     func initialize(){
-        view.backgroundColor =  .white
+        view.backgroundColor =  UIColor(red: 111/255, green: 181/255, blue: 75/255, alpha: 1)
+
 
         //MARK: - CollectionViewInit
         let collectionViewLayout = UICollectionViewFlowLayout()
