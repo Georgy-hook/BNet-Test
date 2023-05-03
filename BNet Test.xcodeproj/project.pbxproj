@@ -16,14 +16,12 @@
 		66643FC629FD479F00C831CC /* BNet_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FC529FD479F00C831CC /* BNet_TestTests.swift */; };
 		66643FD029FD479F00C831CC /* BNet_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FCF29FD479F00C831CC /* BNet_TestUITests.swift */; };
 		66643FD229FD479F00C831CC /* BNet_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FD129FD479F00C831CC /* BNet_TestUITestsLaunchTests.swift */; };
-		66643FDF29FD47BE00C831CC /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FDE29FD47BE00C831CC /* MyViewController.swift */; };
 		66643FE229FD535100C831CC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 66643FE129FD535100C831CC /* SnapKit */; };
-		66643FE429FD56A800C831CC /* imageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FE329FD56A800C831CC /* imageCell.swift */; };
+		66643FE429FD56A800C831CC /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FE329FD56A800C831CC /* ImageCell.swift */; };
 		66643FE629FDA3AA00C831CC /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FE529FDA3AA00C831CC /* UIColor + hex.swift */; };
 		66643FEE29FDAC2500C831CC /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FED29FDAC2500C831CC /* NetworkClient.swift */; };
-		66643FF029FDAC8500C831CC /* IndexLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FEF29FDAC8500C831CC /* IndexLoader.swift */; };
 		66643FF329FDB7A000C831CC /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FF229FDB7A000C831CC /* IndexModel.swift */; };
-		66A790752A012A00008B46B5 /* IndexElementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A790742A012A00008B46B5 /* IndexElementCardView.swift */; };
+		66A790752A012A00008B46B5 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A790742A012A00008B46B5 /* CardViewController.swift */; };
 		66DEF55E29FE81D700DD044F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEF55D29FE81D700DD044F /* APIManager.swift */; };
 		66DEF56029FE902D00DD044F /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEF55F29FE902D00DD044F /* ItemModel.swift */; };
 		66DEF56229FE9AE700DD044F /* UIImage + Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEF56129FE9AE700DD044F /* UIImage + Network.swift */; };
@@ -60,13 +58,11 @@
 		66643FCB29FD479F00C831CC /* BNet TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BNet TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66643FCF29FD479F00C831CC /* BNet_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNet_TestUITests.swift; sourceTree = "<group>"; };
 		66643FD129FD479F00C831CC /* BNet_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNet_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		66643FDE29FD47BE00C831CC /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
-		66643FE329FD56A800C831CC /* imageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageCell.swift; sourceTree = "<group>"; };
+		66643FE329FD56A800C831CC /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		66643FE529FDA3AA00C831CC /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		66643FED29FDAC2500C831CC /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		66643FEF29FDAC8500C831CC /* IndexLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexLoader.swift; sourceTree = "<group>"; };
 		66643FF229FDB7A000C831CC /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
-		66A790742A012A00008B46B5 /* IndexElementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexElementCardView.swift; sourceTree = "<group>"; };
+		66A790742A012A00008B46B5 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		66DEF55D29FE81D700DD044F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		66DEF55F29FE902D00DD044F /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		66DEF56129FE9AE700DD044F /* UIImage + Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Network.swift"; sourceTree = "<group>"; };
@@ -127,7 +123,6 @@
 				66643FE929FDAB5200C831CC /* LifeCycle */,
 				66643FEB29FDABA800C831CC /* Helpers */,
 				66643FE729FDAB2900C831CC /* Presentation */,
-				66643FE829FDAB3E00C831CC /* Trash */,
 			);
 			path = "BNet Test";
 			sourceTree = "<group>";
@@ -154,18 +149,10 @@
 			children = (
 				66643FB429FD479E00C831CC /* Main.storyboard */,
 				66643FB229FD479E00C831CC /* ViewController.swift */,
-				66A790742A012A00008B46B5 /* IndexElementCardView.swift */,
-				66643FE329FD56A800C831CC /* imageCell.swift */,
+				66A790742A012A00008B46B5 /* CardViewController.swift */,
+				66643FE329FD56A800C831CC /* ImageCell.swift */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		66643FE829FDAB3E00C831CC /* Trash */ = {
-			isa = PBXGroup;
-			children = (
-				66643FDE29FD47BE00C831CC /* MyViewController.swift */,
-			);
-			path = Trash;
 			sourceTree = "<group>";
 		};
 		66643FE929FDAB5200C831CC /* LifeCycle */ = {
@@ -200,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				66643FED29FDAC2500C831CC /* NetworkClient.swift */,
-				66643FEF29FDAC8500C831CC /* IndexLoader.swift */,
 				66DEF55D29FE81D700DD044F /* APIManager.swift */,
 			);
 			path = APIConnect;
@@ -353,14 +339,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				66643FB329FD479E00C831CC /* ViewController.swift in Sources */,
-				66A790752A012A00008B46B5 /* IndexElementCardView.swift in Sources */,
+				66A790752A012A00008B46B5 /* CardViewController.swift in Sources */,
 				66643FAF29FD479E00C831CC /* AppDelegate.swift in Sources */,
 				66DEF55E29FE81D700DD044F /* APIManager.swift in Sources */,
-				66643FE429FD56A800C831CC /* imageCell.swift in Sources */,
+				66643FE429FD56A800C831CC /* ImageCell.swift in Sources */,
 				66DEF56229FE9AE700DD044F /* UIImage + Network.swift in Sources */,
 				66DEF56029FE902D00DD044F /* ItemModel.swift in Sources */,
-				66643FF029FDAC8500C831CC /* IndexLoader.swift in Sources */,
-				66643FDF29FD47BE00C831CC /* MyViewController.swift in Sources */,
 				66643FEE29FDAC2500C831CC /* NetworkClient.swift in Sources */,
 				66643FB129FD479E00C831CC /* SceneDelegate.swift in Sources */,
 				66643FE629FDA3AA00C831CC /* UIColor + hex.swift in Sources */,

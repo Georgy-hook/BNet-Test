@@ -10,7 +10,7 @@ import SnapKit
 class CardViewController: UIViewController {
     
     // MARK: - Properties
-    
+    private var imageToDownload:String = ""
     private let imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: "ImageTest1")!
@@ -79,8 +79,12 @@ class CardViewController: UIViewController {
     }
     
     // MARK: - Setup
-    func configure(){
-        
+    func configure(with item:CellFillElement){
+        imageView.image = item.image
+        titleLabel.text = item.header
+        descriptionLabel.text = item.description
+        imageToDownload = item.iconToDownload
+        downloadImage(from: imageToDownload)
     }
     private func setupViews() {
         view.addSubview(imageView)
@@ -142,5 +146,13 @@ class CardViewController: UIViewController {
     }
     
     
+}
+extension CardViewController{
+    func downloadImage(from URLImage:String){
+    APIManager().downloadImage(from: URLImage) { [weak self] image in
+        guard let self = self else { return }
+        iconImageView.image = image
+        }
+    }
 }
 

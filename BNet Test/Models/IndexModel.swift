@@ -5,18 +5,13 @@
 //  Created by Georgy on 29.04.2023.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let drug = try? JSONDecoder().decode(Drug.self, from: jsonData)
-
 import Foundation
 
 // MARK: - DrugElement
 struct DrugElement: Codable {
     let id: Int?
     let image: String?
-    //let categories: Categories?
+    let categories: Categories?
     let name, description, documentation: String?
     //let fields: [Field]?
 }

@@ -30,17 +30,15 @@ class ViewController: UIViewController {
     //private var searchTextField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     //private var searchButton: UIButton?
     private var isSearchModeOn = false
+    private var isDataLoaded = false
     private var page = 0
-    private let pageSize = 10
+    private let pageSize = 8
+    private var searchText:String? = nil
     private var collectionView: UICollectionView!
     private var images: [UIImage?] = []
-    private var cellFillElem = CellFillElement(image: nil, header: "", description: "")
+    private var cellFillElem = CellFillElement(image: nil, header: "", description: "",iconToDownload: "")
     private var cellFill:[CellFillElement] = []
     @objc func backButtonTapped() {
-        
-        let myViewController = MyViewController() // создание экземпляра вашего ViewController
-        self.navigationController?.pushViewController(myViewController, animated: true) // отображение UINavigationController на экране
-
 
     }
     
@@ -56,6 +54,8 @@ class ViewController: UIViewController {
         if isSearchModeOn{
             navigationItem.titleView = nil
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "magnifyingglass")
+            self.searchText = nil
+            loadFirstPage()
             isSearchModeOn.toggle()
         }else{
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "xmark.app")
@@ -66,15 +66,9 @@ class ViewController: UIViewController {
             }) { (success) in
                 searchTextField.becomeFirstResponder()
             }
-           
-            //loadSearchPage(with: searchTextField.text)
             isSearchModeOn.toggle()
         }
         
-    }
-
-    @objc func handleSearchButtonTap() {
-        // Обработчик нажатия на кнопку "Search"
     }
 
 }
@@ -128,14 +122,22 @@ extension ViewController:UICollectionViewDelegateFlowLayout{
 //MARK: - UICollectionViewDelegate
 extension ViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-               loadNextPage()
+        if isDataLoaded{
+            loadNextPage()
+            isDataLoaded.toggle()
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let myViewController = CardViewController() // создание экземпляра ViewController
+        myViewController.configure(with: cellFill[indexPath.item])
+        self.navigationController?.pushViewController(myViewController, animated: true) // отображение UINavigationController на экране
     }
 }
 
 //MARK: - LoadPagesPrivateFunc
-extension ViewController{
+private extension ViewController{
     private func loadFirstPage(){
-        APIManager().loadIndex(limit: pageSize, offset: 0,search: nil){ [weak self] result in
+        APIManager().loadIndex(limit: pageSize, offset: 0,search: searchText){ [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result{
@@ -153,7 +155,7 @@ extension ViewController{
     
     private func loadNextPage() {
         let offset = page * pageSize
-        APIManager().loadIndex(limit: pageSize, offset: offset,search: nil){ [weak self] result in
+        APIManager().loadIndex(limit: pageSize, offset: offset,search: searchText){ [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result{
@@ -168,46 +170,39 @@ extension ViewController{
             }
         }
     }
-    private func loadSearchPage(with search:String){
-        APIManager().loadIndex(limit:nil,offset:nil,search:search){ [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result{
-                case .success(let index):
-                    self.page += 1
-                    self.loadData(for: index)
-                    self.collectionView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
     
     private func loadData(for index:Drug) {
+        var loadedCount = 0
         let imageCountBeforeLoad = self.cellFill.count
+        
         index.forEach { item in
-            var newCellFillElem = CellFillElement(image: nil, header: item.name ?? "", description: item.description ?? "")
+            var newCellFillElem = CellFillElement(image: nil, header: item.name ?? "", description: item.description ?? "", iconToDownload:item.categories?.icon ?? "" )
             APIManager().downloadImage(from: item.image ?? "") { [weak self] image in
                 guard let self = self else { return }
-                newCellFillElem.image = image
-                self.images.append(image)
-                self.cellFill.append(newCellFillElem)
-                if self.cellFill.count == imageCountBeforeLoad + index.count {
-                    self.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    newCellFillElem.image = image
+                    self.cellFill.append(newCellFillElem)
+                    loadedCount += 1
+                    
+                    if loadedCount == index.count {
+                        print("reloadData")
+                        self.isDataLoaded.toggle()
+                        self.collectionView.reloadData()
+                    }
                 }
             }
-        
         }
     }
 }
+
 //MARK: -
 extension ViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let searchText = textField.text {
-                self.cellFill = []
-                loadSearchPage(with: searchText)
-             }
+                self.page = 0
+                self.searchText = searchText
+                loadFirstPage()
+        }
              textField.resignFirstResponder()
              return true
          }
