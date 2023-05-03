@@ -45,26 +45,28 @@ class ViewController: UIViewController {
     }
     
     @objc func searchButtonTapped() {
+        
+        let searchTextField = UISearchTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        searchTextField.center = view.center
+        searchTextField.borderStyle = .roundedRect
+        searchTextField.placeholder = "Search"
+        searchTextField.clearButtonMode = .whileEditing
+        searchTextField.returnKeyType = .search
+        searchTextField.delegate = self
         if isSearchModeOn{
             navigationItem.titleView = nil
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "magnifyingglass")
             isSearchModeOn.toggle()
         }else{
-            let searchTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "chevron.right")
-            searchTextField.center = view.center
-            searchTextField.borderStyle = .roundedRect
-            searchTextField.placeholder = "Search"
-            searchTextField.clearButtonMode = .whileEditing
-            searchTextField.returnKeyType = .search
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "xmark.app")
             navigationItem.titleView = searchTextField
-            
             // Configure animation for showing the search text field
             UIView.animate(withDuration: 0.2, animations: {
                 searchTextField.alpha = 1
             }) { (success) in
                 searchTextField.becomeFirstResponder()
             }
+           
             //loadSearchPage(with: searchTextField.text)
             isSearchModeOn.toggle()
         }
@@ -174,8 +176,7 @@ extension ViewController{
                 case .success(let index):
                     self.page += 1
                     self.loadData(for: index)
-                    
-                    //self.collectionView.reloadData()
+                    self.collectionView.reloadData()
                 case .failure(let error):
                     print(error)
                 }
@@ -200,3 +201,15 @@ extension ViewController{
         }
     }
 }
+//MARK: -
+extension ViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let searchText = textField.text {
+                self.cellFill = []
+                loadSearchPage(with: searchText)
+             }
+             textField.resignFirstResponder()
+             return true
+         }
+    }
+
