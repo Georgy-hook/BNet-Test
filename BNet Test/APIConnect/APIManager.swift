@@ -39,13 +39,25 @@ enum ApiType {
         case .getItem(let id):
             return "api/ppp/item?id=\(id)"
         case .getIndex(let limit, let offset, let search):
-            guard let limit = limit, let offset = offset else{
-                guard let search = search else{
-                    return "api/ppp/index"
-                }
-                return "api/ppp/index?search=\(search)"
-            }
-            return "api/ppp/index?offset=\(offset)&limit=\(limit)"
+            var url = "api/ppp/index"
+               if let limit = limit {
+                   url += "?limit=\(limit)"
+               }
+               if let offset = offset {
+                   if url.contains("?") {
+                       url += "&offset=\(offset)"
+                   } else {
+                       url += "?offset=\(offset)"
+                   }
+               }
+               if let search = search {
+                   if url.contains("?") {
+                       url += "&search=\(search)"
+                   } else {
+                       url += "?search=\(search)"
+                   }
+               }
+               return url
         case .getImage(let path):
             return path
         default:
