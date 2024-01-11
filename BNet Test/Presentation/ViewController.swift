@@ -9,23 +9,25 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-           navigationController?.navigationBar.tintColor = .blue
-           navigationController?.navigationBar.isTranslucent = true
-           navigationItem.title = "Средства"
-           navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-           navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
-       }
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = .white
+        title = "Средства"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent //задаем белый цвет для statusBar
+        return .lightContent
     }
+    
     //MARK: - Private properties
     private var isSearchModeOn = false
     private var isDataLoaded = false
@@ -37,7 +39,7 @@ class ViewController: UIViewController {
     private var cellFillElem = CellFillElement(image: nil, header: "", description: "",iconToDownload: "")
     private var cellFill:[CellFillElement] = []
     @objc func backButtonTapped() {
-
+        
     }
     
     @objc func searchButtonTapped() {
@@ -68,16 +70,16 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
 }
 
 //MARK: - Private methods
 private extension ViewController{
-   
+    
     func initialize(){
         view.backgroundColor =  UIColor(red: 111/255, green: 181/255, blue: 75/255, alpha: 1)
-
-
+        
+        
         //MARK: - CollectionViewInit
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
@@ -97,7 +99,7 @@ private extension ViewController{
         collectionView.showsVerticalScrollIndicator = false
         loadFirstPage()
     }
-  
+    
 }
 //MARK: - UICollectionViewDataSource
 extension ViewController:UICollectionViewDataSource {
@@ -198,12 +200,12 @@ private extension ViewController{
 extension ViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let searchText = textField.text {
-                self.page = 0
-                self.searchText = searchText
-                loadFirstPage()
+            self.page = 0
+            self.searchText = searchText
+            loadFirstPage()
         }
-             textField.resignFirstResponder()
-             return true
-         }
+        textField.resignFirstResponder()
+        return true
     }
+}
 

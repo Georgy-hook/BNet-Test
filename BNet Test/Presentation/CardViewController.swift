@@ -6,16 +6,27 @@
 //
 
 import UIKit
-import SnapKit
 class CardViewController: UIViewController {
     
     // MARK: - Properties
     private var imageToDownload:String = ""
+    
     private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private let textStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: "ImageTest1")!
@@ -35,9 +46,8 @@ class CardViewController: UIViewController {
     private let starButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.setImage(UIImage(named: "starIcon"), for: .normal)
         button.setImage(UIImage(systemName: "star.fill"), for: .selected)
-        button.tintColor = .systemYellow
         return button
     }()
     
@@ -45,7 +55,8 @@ class CardViewController: UIViewController {
         let label = UILabel(frame: .zero)
         label.text = "ДВД Шанс, КС"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.textColor  = .black
         label.numberOfLines = 0
         return label
     }()
@@ -54,7 +65,8 @@ class CardViewController: UIViewController {
         let label = UILabel(frame: .zero)
         label.text = "Двухкомпонентный протравитель семян зерновых культур."
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.textColor = UIColor(named: "myLightGray")
         label.numberOfLines = 0
         return label
     }()
@@ -62,24 +74,25 @@ class CardViewController: UIViewController {
     private let buyButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Где купить", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.setTitle("  ГДЕ КУПИТЬ", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         button.contentHorizontalAlignment = .center
-        button.setImage(UIImage(systemName: "mappin"), for: .normal)
+        button.setImage(UIImage(named: "pinIcon"), for: .normal)
         button.tintColor = .black
         button.layer.borderWidth = 0.2
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.cornerRadius = 9
         return button
     }()
+
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  UIColor(red: 111/255, green: 181/255, blue: 75/255, alpha: 1)
-        //view.backgroundColor = .white
-
+        view.backgroundColor =  UIColor(named: "myGreen")
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         setupViews()
         setupConstraints()
     }
@@ -92,78 +105,66 @@ class CardViewController: UIViewController {
         imageToDownload = item.iconToDownload
         downloadImage(from: imageToDownload)
     }
+    
     private func setupViews() {
         view.addSubview(contentView)
+        
+        textStackView.addArrangedSubview(titleLabel)
+        textStackView.addArrangedSubview(descriptionLabel)
+        
         contentView.addSubview(imageView)
         contentView.addSubview(iconImageView)
         contentView.addSubview(starButton)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(textStackView)
         contentView.addSubview(buyButton)
     }
     
     private func setupConstraints() {
-        contentView.snp.makeConstraints{make in
-            make.bottom.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-        }
-        imageView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(117)
-            make.height.equalTo(183)
-        }
-        
-        iconImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(30)
-            //make.leading.equalTo(imageView.snp.leading).offset(66)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
-            make.width.equalTo(28)
-            make.height.equalTo(28)
-        }
-        
-        starButton.snp.makeConstraints { make in
-            make.leading.equalTo(imageView.snp.trailing).offset(66)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
-            make.width.equalTo(28)
-            make.height.equalTo(28)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(14)
-            make.top.equalTo(imageView.snp.bottom).offset(32)
-            make.trailing.equalToSuperview().offset(-14)
-        }
-        
-        descriptionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(14)
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.trailing.equalToSuperview().offset(-14)
-        }
-        
-        buyButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(14)
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(16)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 183),
+            imageView.widthAnchor.constraint(equalToConstant: 117),
             
-            make.height.equalTo(40)
-        }
+            starButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -34),
+            starButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            starButton.heightAnchor.constraint(equalToConstant: 32),
+            starButton.widthAnchor.constraint(equalToConstant: 32),
+            
+            iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            iconImageView.heightAnchor.constraint(equalToConstant: 32),
+            iconImageView.widthAnchor.constraint(equalToConstant: 32),
+            
+            textStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32),
+            textStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 14),
+            textStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -33),
+            
+            buyButton.topAnchor.constraint(equalTo: textStackView.bottomAnchor, constant: 16),
+            buyButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 14),
+            buyButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            buyButton.heightAnchor.constraint(equalToConstant: 36),
+            
+        ])
     }
-    
     
     // MARK: - Actions
     
     @objc private func starButtonTapped(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
     }
-    
-    
 }
+
 extension CardViewController{
     func downloadImage(from URLImage:String){
-    APIManager().downloadImage(from: URLImage) { [weak self] image in
-        guard let self = self else { return }
-        iconImageView.image = image
+        APIManager().downloadImage(from: URLImage) { [weak self] image in
+            guard let self = self else { return }
+            iconImageView.image = image
         }
     }
 }
