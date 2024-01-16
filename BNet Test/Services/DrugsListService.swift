@@ -14,7 +14,7 @@ final class DrugsListService{
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     
-    private var lastLoadedPage: Int = 1
+    private var CurrentPage: Int = 0
     
     static let didChangeNotification = Notification.Name(rawValue: "DrugsListProviderDidChange")
     
@@ -26,12 +26,13 @@ final class DrugsListService{
         guard !isFetchingDrugs else { return }
         isFetchingDrugs = true
         
-        let nextPage = lastLoadedPage + 1
-        self.lastLoadedPage = nextPage
+        
         task?.cancel()
         
-        let request = DrugsListURLReauest(limit:10, offset:nextPage, search:search)
+        let request = DrugsListURLReauest(limit:10, offset:CurrentPage, search:search)
         let session = URLSession.shared
+        
+        CurrentPage += 1
         
         let task = session.objectTask(for: request) { [weak self] (result: Result<Drug, Error>) in
             guard let self = self else { return }
@@ -59,12 +60,15 @@ final class DrugsListService{
 }
 
 extension DrugsListService{
-    private func DrugsListURLReauest(limit:Int?,offset:Int?,search:String?) -> URLRequest{
-        var request = URLRequest.makeHTTPRequest(path: "api/ppp/index??limit=\(limit)&offset=\(offset)", httpMethod: "GET")
-        guard let search = search else { return request }
-        request.setValue(search, forHTTPHeaderField: search)
-        print(request)
-        return request
+    private func DrugsListURLReauest(limit:Int,offset:Int,search:String?) -> URLRequest{
+        if let search = search {
+            let request = URLRequest.makeHTTPRequest(path: "api/ppp/index??limit=\(limit)&offset=\(offset)&search=\(search)", httpMethod: "GET")
+            return request
+        } else {
+            let request = URLRequest.makeHTTPRequest(path: "api/ppp/index??limit=\(limit)&offset=\(offset)", httpMethod: "GET")
+            return request
+        }
+       
     }
     
     private func convertToCellFillElem(element: DrugElement) -> CellFillElement{
@@ -77,6 +81,7 @@ extension DrugsListService{
 
 extension DrugsListService{
     func clearData() {
+        CurrentPage = 0
         drugs = []
     }
 }

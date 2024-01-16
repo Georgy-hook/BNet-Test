@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
+
 class ImageCell: UICollectionViewCell{
     // MARK: - Public
     func configure (with elem:CellFillElement) {

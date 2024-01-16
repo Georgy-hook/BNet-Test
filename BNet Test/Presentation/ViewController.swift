@@ -13,12 +13,33 @@ protocol ViewControllerProtocol: AnyObject{
 }
 
 class ViewController: UIViewController {
+    
     //MARK: - UI Elements
     private var collectionView = DrugsCollectionView()
     
+    private let searchTextField:UISearchTextField = {
+        let searchTextField = UISearchTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        searchTextField.tintColor = .white
+        searchTextField.textColor = .white
+        searchTextField.borderStyle = .roundedRect
+        searchTextField.placeholder = "Search"
+        searchTextField.clearButtonMode = .whileEditing
+        searchTextField.returnKeyType = .search
+        searchTextField.alpha = 0
+        return searchTextField
+    }()
+    
     //MARK: - Variables
     private var isSearchModeOn = false
-    private var searchText:String? = nil
+    
+    private var searchText:String? = nil {
+        didSet{
+            drugsListService.clearData()
+            collectionView.clearData()
+            drugsListService.fetchDrugsNextPage(searchText)
+        }
+    }
+    
     private var drugsListServiceObserver: NSObjectProtocol?
     private var drugsListService = DrugsListService.shared
     
@@ -35,66 +56,52 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isTranslucent = true
-        
-        navigationController?.navigationBar.tintColor = .white
-        title = "Средства"
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor:UIColor.white
-        ]
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
+        setupNavigationBar()
     }
     
+    //MARK: - PreferredStatusBarStyle
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    //MARK: - Actions
     @objc func backButtonTapped() {
         
     }
     
     @objc func searchButtonTapped() {
-        
-        let searchTextField = UISearchTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        searchTextField.center = view.center
-        searchTextField.borderStyle = .roundedRect
-        searchTextField.placeholder = "Search"
-        searchTextField.clearButtonMode = .whileEditing
-        searchTextField.returnKeyType = .search
-        searchTextField.delegate = self
         if isSearchModeOn{
             navigationItem.titleView = nil
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "magnifyingglass")
             self.searchText = nil
             isSearchModeOn.toggle()
-        }else{
+        } else{
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "xmark.app")
             navigationItem.titleView = searchTextField
             UIView.animate(withDuration: 0.2, animations: {
-                searchTextField.alpha = 1
-            }) { (success) in
+                self.searchTextField.alpha = 1
+            })
+            { [self] _ in
                 searchTextField.becomeFirstResponder()
             }
             isSearchModeOn.toggle()
         }
-        
     }
     
 }
 
-//MARK: - Private methods
+//MARK: - Layout methods
 private extension ViewController{
     
     func initialize(){
         view.backgroundColor =  UIColor(named: "myGreen")
-        
+        searchTextField.delegate = self
         collectionView.delegateVC = self
     }
     
     func addSubviews(){
         view.addSubview(collectionView)
+        view.addSubview(searchTextField)
     }
     
     func applyConstraints(){
@@ -103,11 +110,31 @@ private extension ViewController{
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    func setupNavigationBar(){
+        navigationController?.navigationBar.isTranslucent = true
+        
+        navigationController?.navigationBar.tintColor = .white
+        title = "Средства"
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor:UIColor.white
+        ]
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                                           style: .plain,
+                                                           target: self, action: #selector(backButtonTapped))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
+                                                            style: .plain, target: self,
+                                                            action: #selector(searchButtonTapped))
     }
 }
 
-//MARK: - LoadPagesPrivateFunc
+//MARK: - Add Observer
 private extension ViewController{
     private func addObserver(){
         drugsListServiceObserver = NotificationCenter.default
@@ -141,9 +168,8 @@ extension ViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let searchText = textField.text {
             self.searchText = searchText
-            drugsListService.clearData()
-            drugsListService.fetchDrugsNextPage(searchText)
         }
+        
         textField.resignFirstResponder()
         return true
     }

@@ -74,6 +74,7 @@ extension DrugsCollectionView:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         delegateVC?.fetchDrugs()
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegateVC?.pushCardViewController(with: cells[indexPath.item])
     }
@@ -81,7 +82,22 @@ extension DrugsCollectionView:UICollectionViewDelegate{
 
 extension DrugsCollectionView{
     func set(with drugs:[CellFillElement]){
+        let oldCount = cells.count
         cells = drugs
+        let newCount = cells.count
+    
+        if oldCount < newCount {
+            let indexPaths = (oldCount..<newCount).map { i in
+                IndexPath(item: i, section: 0)
+            }
+            self.performBatchUpdates {
+                self.insertItems(at: indexPaths)
+            } completion: { _ in }
+        }
+    }
+    
+    func clearData(){
+        cells = []
         self.reloadData()
     }
 }
