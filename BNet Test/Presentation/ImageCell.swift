@@ -7,13 +7,14 @@
 
 import UIKit
 import SnapKit
-
+import Kingfisher
 class ImageCell: UICollectionViewCell{
     // MARK: - Public
     func configure (with elem:CellFillElement) {
-        imageView.image = elem.image
         labelHeader.text = elem.header
         labelDescription.text = elem.description
+        
+        imageView.downloadImage(with: elem.image)
     }
     
     // MARK: - init

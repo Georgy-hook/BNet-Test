@@ -6,19 +6,42 @@
 //
 
 import UIKit
-import SnapKit
+
+protocol ViewControllerProtocol: AnyObject{
+    func pushCardViewController(with element:CellFillElement)
+    func fetchDrugs()
+}
 
 class ViewController: UIViewController {
+    //MARK: - UI Elements
+    private var collectionView = DrugsCollectionView()
     
+    //MARK: - Variables
+    private var isSearchModeOn = false
+    private var searchText:String? = nil
+    private var drugsListServiceObserver: NSObjectProtocol?
+    private var drugsListService = DrugsListService.shared
+    
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        addSubviews()
+        applyConstraints()
+        
+        fetchDrugs()
+        addObserver()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isTranslucent = true
+        
         navigationController?.navigationBar.tintColor = .white
         title = "Средства"
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor:UIColor.white
+        ]
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
@@ -28,16 +51,6 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    //MARK: - Private properties
-    private var isSearchModeOn = false
-    private var isDataLoaded = false
-    private var page = 0
-    private let pageSize = 8
-    private var searchText:String? = nil
-    private var collectionView: UICollectionView!
-    private var images: [UIImage?] = []
-    private var cellFillElem = CellFillElement(image: nil, header: "", description: "",iconToDownload: "")
-    private var cellFill:[CellFillElement] = []
     @objc func backButtonTapped() {
         
     }
@@ -55,12 +68,10 @@ class ViewController: UIViewController {
             navigationItem.titleView = nil
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "magnifyingglass")
             self.searchText = nil
-            loadFirstPage()
             isSearchModeOn.toggle()
         }else{
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "xmark.app")
             navigationItem.titleView = searchTextField
-            // Configure animation for showing the search text field
             UIView.animate(withDuration: 0.2, animations: {
                 searchTextField.alpha = 1
             }) { (success) in
@@ -77,132 +88,61 @@ class ViewController: UIViewController {
 private extension ViewController{
     
     func initialize(){
-        view.backgroundColor =  UIColor(red: 111/255, green: 181/255, blue: 75/255, alpha: 1)
+        view.backgroundColor =  UIColor(named: "myGreen")
         
-        
-        //MARK: - CollectionViewInit
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .vertical
-        collectionViewLayout.minimumInteritemSpacing = 15
-        collectionViewLayout.minimumLineSpacing = 15
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: 24, left: 16, bottom: 0, right: 16)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.delegateVC = self
+    }
+    
+    func addSubviews(){
         view.addSubview(collectionView)
-        collectionView.snp.makeConstraints{make in
-            make.leading.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalToSuperview()
-        }
-        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.showsVerticalScrollIndicator = false
-        loadFirstPage()
     }
     
-}
-//MARK: - UICollectionViewDataSource
-extension ViewController:UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cellFill.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCell
-        cell.configure(with: cellFill[indexPath.item])
-        return cell
-    }
-}
-//MARK: - UICollectionViewDelegateFlowLayout
-extension ViewController:UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 164, height: 296)
-    }
-}
-
-//MARK: - UICollectionViewDelegate
-extension ViewController:UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if isDataLoaded{
-            loadNextPage()
-            isDataLoaded.toggle()
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let myViewController = CardViewController() // создание экземпляра ViewController
-        myViewController.configure(with: cellFill[indexPath.item])
-        self.navigationController?.pushViewController(myViewController, animated: true) // отображение UINavigationController на экране
+    func applyConstraints(){
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
 }
 
 //MARK: - LoadPagesPrivateFunc
 private extension ViewController{
-    private func loadFirstPage(){
-        APIManager().loadIndex(limit: pageSize, offset: 0,search: searchText){ [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result{
-                case .success(let index):
-                    self.page = 1
-                    self.cellFill = []
-                    self.loadData(for: index)
-                    self.collectionView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    private func loadNextPage() {
-        let offset = page * pageSize
-        APIManager().loadIndex(limit: pageSize, offset: offset,search: searchText){ [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result{
-                case .success(let index):
-                    self.page += 1
-                    self.loadData(for: index)
-                    
-                    //self.collectionView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    private func loadData(for index:Drug) {
-        var loadedCount = 0
-        let imageCountBeforeLoad = self.cellFill.count
-        
-        index.forEach { item in
-            var newCellFillElem = CellFillElement(image: nil, header: item.name ?? "", description: item.description ?? "", iconToDownload:item.categories?.icon ?? "" )
-            APIManager().downloadImage(from: item.image ?? "") { [weak self] image in
+    private func addObserver(){
+        drugsListServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: DrugsListService.didChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
                 guard let self = self else { return }
-                DispatchQueue.main.async {
-                    newCellFillElem.image = image
-                    self.cellFill.append(newCellFillElem)
-                    loadedCount += 1
-                    
-                    if loadedCount == index.count {
-                        print("reloadData")
-                        self.isDataLoaded.toggle()
-                        self.collectionView.reloadData()
-                    }
-                }
+                collectionView.set(with: drugsListService.drugs)
             }
-        }
+        collectionView.set(with: drugsListService.drugs)
     }
 }
 
-//MARK: -
+//MARK: - ViewControllerProtocol
+extension ViewController:ViewControllerProtocol{
+    func fetchDrugs() {
+        drugsListService.fetchDrugsNextPage(searchText)
+    }
+    
+    func pushCardViewController(with element:CellFillElement){
+        let myViewController = CardViewController()
+        myViewController.configure(with: element)
+        self.navigationController?.pushViewController(myViewController, animated: true)
+    }
+}
+
+//MARK: - UITextFieldDelegate
 extension ViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let searchText = textField.text {
-            self.page = 0
             self.searchText = searchText
-            loadFirstPage()
+            drugsListService.clearData()
+            drugsListService.fetchDrugsNextPage(searchText)
         }
         textField.resignFirstResponder()
         return true

@@ -99,11 +99,10 @@ class CardViewController: UIViewController {
     
     // MARK: - Setup
     func configure(with item:CellFillElement){
-        imageView.image = item.image
         titleLabel.text = item.header
         descriptionLabel.text = item.description
-        imageToDownload = item.iconToDownload
-        downloadImage(from: imageToDownload)
+        imageView.downloadImage(with: item.image)
+        iconImageView.downloadImage(with: item.iconToDownload)
     }
     
     private func setupViews() {
@@ -160,12 +159,4 @@ class CardViewController: UIViewController {
     }
 }
 
-extension CardViewController{
-    func downloadImage(from URLImage:String){
-        APIManager().downloadImage(from: URLImage) { [weak self] image in
-            guard let self = self else { return }
-            iconImageView.image = image
-        }
-    }
-}
 

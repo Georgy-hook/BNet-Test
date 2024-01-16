@@ -8,7 +8,7 @@
 import UIKit
 
 struct CellFillElement{
-    var image:UIImage?
+    var image:String
     var header:String
     var description:String
     var iconToDownload:String

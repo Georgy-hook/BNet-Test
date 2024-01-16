@@ -147,134 +147,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "47EC8813-D5DC-471F-BF36-02B61E589DFD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "loadFirstPage()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "47EC8813-D5DC-471F-BF36-02B61E589DFD - 7256ecd453cd6d7e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BNet_Test.ViewController.loadFirstPage() -&gt; ()"
-                  moduleName = "BNet Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "47EC8813-D5DC-471F-BF36-02B61E589DFD - 7e7de503c89b9c50"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;BNet_Test.DrugElement&gt;, Swift.Error&gt;) -&gt; () in BNet_Test.ViewController.loadFirstPage() -&gt; ()"
-                  moduleName = "BNet Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "188">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D180EA3F-CE53-4C2B-B504-988E0FE1E908"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "loadFirstPage()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C65EAA48-1D8B-49AA-B8CD-7D274E33C9AC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "textFieldShouldReturn(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3DC9EDD2-4B93-4F23-871A-4F2F646902C0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "textFieldShouldReturn(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3DC9EDD2-4B93-4F23-871A-4F2F646902C0 - c944c35dd6a13c88"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BNet_Test.ViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
-                  moduleName = "BNet Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "3DC9EDD2-4B93-4F23-871A-4F2F646902C0 - c944c35dd6a13c88"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BNet_Test.ViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
-                  moduleName = "BNet Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
-                  offsetFromSymbolStart = "264">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "40D234DA-6863-4683-8080-5C322816FA53"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -339,77 +211,111 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C9598A0-B3B1-4F32-8D92-98DC4AC1D7CA"
+            uuid = "3D6099CB-2BE0-45DD-A042-5B54CEB6C0FC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
+            filePath = "BNet Test/Presentation/DrugsCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "loadData(for:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "set(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C6BCDAB-672B-4042-8E9B-B489E4B15DF4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/Presentation/DrugsCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "set(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C8BE309-C385-4F3C-AE79-3E21402F29BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/Services/DrugsListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "fetchDrugsNextPage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B13375CF-92CC-4683-B5BC-40E84AA4EA5A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/Services/DrugsListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchDrugsNextPage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30A39F94-F507-4251-9625-3D6ED6186D61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/Services/DrugsListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "fetchDrugsNextPage(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "7C9598A0-B3B1-4F32-8D92-98DC4AC1D7CA - 64ce844fd7ae0024"
+                  uuid = "30A39F94-F507-4251-9625-3D6ED6186D61 - 3004be563558125f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "BNet_Test.ViewController.loadData(for: Swift.Array&lt;BNet_Test.DrugElement&gt;) -&gt; ()"
+                  symbolName = "BNet_Test.DrugsListService.fetchDrugsNextPage(Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
                   moduleName = "BNet Test"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
+                  urlString = "file:///Users/georgy/Documents/Programs/BNet-Test/BNet%20Test/Services/DrugsListService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "104">
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "548">
                </Location>
                <Location
-                  uuid = "7C9598A0-B3B1-4F32-8D92-98DC4AC1D7CA - c479818841d85ff6"
+                  uuid = "30A39F94-F507-4251-9625-3D6ED6186D61 - 3004be563558125f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (BNet_Test.DrugElement) -&gt; () in BNet_Test.ViewController.loadData(for: Swift.Array&lt;BNet_Test.DrugElement&gt;) -&gt; ()"
+                  symbolName = "BNet_Test.DrugsListService.fetchDrugsNextPage(Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
                   moduleName = "BNet Test"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
+                  urlString = "file:///Users/georgy/Documents/Programs/BNet-Test/BNet%20Test/Services/DrugsListService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "168">
-               </Location>
-               <Location
-                  uuid = "7C9598A0-B3B1-4F32-8D92-98DC4AC1D7CA - b398d1d16a5dcac4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.UIImage) -&gt; () in closure #1 (BNet_Test.DrugElement) -&gt; () in BNet_Test.ViewController.loadData(for: Swift.Array&lt;BNet_Test.DrugElement&gt;) -&gt; ()"
-                  moduleName = "BNet Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "224">
-               </Location>
-               <Location
-                  uuid = "7C9598A0-B3B1-4F32-8D92-98DC4AC1D7CA - 49bbb2991ba13ecc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (__C.UIImage) -&gt; () in closure #1 (BNet_Test.DrugElement) -&gt; () in BNet_Test.ViewController.loadData(for: Swift.Array&lt;BNet_Test.DrugElement&gt;) -&gt; ()"
-                  moduleName = "BNet Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgy/Documents/%D0%9A%D1%83%D1%80%D1%81%D1%8B/Templates/BNet%20Test/BNet%20Test/Presentation/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "128">
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "720">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -417,48 +323,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "43232A99-8636-4F82-8E7E-A9DD692FC0DF"
+            uuid = "D27314CB-31EE-4056-93E1-2C9F6E08BE1F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BNet Test/Presentation/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "loadData(for:)"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "textFieldShouldReturn(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AE41408E-2919-45BB-8C5A-EB4131A9E474"
+            uuid = "97D68F01-8D90-4D55-AEBA-CB0207947642"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
+            filePath = "BNet Test/Services/DrugsListService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "loadData(for:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "DrugsListURLReauest(limit:offset:search:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "97D68F01-8D90-4D55-AEBA-CB0207947642 - 82151281984be25f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.DrugsListService.DrugsListURLReauest(limit: Swift.Optional&lt;Swift.Int&gt;, offset: Swift.Optional&lt;Swift.Int&gt;, search: Swift.Optional&lt;Swift.String&gt;) -&gt; Foundation.URLRequest"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/Programs/BNet-Test/BNet%20Test/Services/DrugsListService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1000">
+               </Location>
+               <Location
+                  uuid = "97D68F01-8D90-4D55-AEBA-CB0207947642 - 82151281984be25f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BNet_Test.DrugsListService.DrugsListURLReauest(limit: Swift.Optional&lt;Swift.Int&gt;, offset: Swift.Optional&lt;Swift.Int&gt;, search: Swift.Optional&lt;Swift.String&gt;) -&gt; Foundation.URLRequest"
+                  moduleName = "BNet Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgy/Documents/Programs/BNet-Test/BNet%20Test/Services/DrugsListService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1020">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F2E1DAA-5054-4900-8C89-141844002630"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BNet Test/Services/DrugsListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "DrugsListURLReauest(limit:offset:search:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8CC5E7A7-2833-4F79-A60D-E7B93E1C78AF"
+            uuid = "732703FE-B9B9-4457-9569-714D54411301"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BNet Test/Presentation/ViewController.swift"
+            filePath = "BNet Test/Services/DrugsListService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "loadData(for:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "DrugsListURLReauest(limit:offset:search:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
