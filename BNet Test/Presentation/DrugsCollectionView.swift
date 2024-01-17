@@ -65,7 +65,7 @@ extension DrugsCollectionView:UICollectionViewDelegateFlowLayout{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat{
-        return params.cellSpacing
+        return 19
     }
 }
 
@@ -80,6 +80,7 @@ extension DrugsCollectionView:UICollectionViewDelegate{
     }
 }
 
+// MARK: - Public methods
 extension DrugsCollectionView{
     func set(with drugs:[CellFillElement]){
         let oldCount = cells.count

@@ -6,52 +6,50 @@
 //
 
 import UIKit
-import SnapKit
-
 class ImageCell: UICollectionViewCell{
-    // MARK: - Public
-    func configure (with elem:CellFillElement) {
-        labelHeader.text = elem.header
-        labelDescription.text = elem.description
-        
-        imageView.downloadImage(with: elem.image)
-    }
     
-    // MARK: - init
+    //MARK: - UI Elements
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    private let labelHeader: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let labelDescription: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    // MARK: - Initiliazation
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.layer.cornerRadius = 8
         self.contentView.backgroundColor = UIColor.white
         initialize()
+        addSubviews()
+        applyConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - private properties
-    private let imageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    private let labelHeader: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 13)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 2
-        return label
-    }()
-    private let labelDescription: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 5
-        return label
-    }()
 }
 
-// MARK: - private methods
+//MARK: - Layout methods
 private extension ImageCell{
     func initialize(){
         //Shadow init
@@ -60,22 +58,38 @@ private extension ImageCell{
         contentView.layer.shadowOpacity = 0.2
         contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
         contentView.layer.shadowRadius = 4
-
-        contentView.addSubview(imageView)
-        imageView.snp.makeConstraints{make in
-            make.height.equalTo(140)
-            make.top.trailing.leading.equalToSuperview().inset(12)
-        }
-        contentView.addSubview(labelHeader)
-        labelHeader.snp.makeConstraints{make in
-            make.top.equalTo(imageView.snp.bottomMargin).offset(12)
-            make.trailing.leading.equalToSuperview().inset(12)
-        }
-        contentView.addSubview(labelDescription)
-        labelDescription.snp.makeConstraints{make in
-            make.top.equalTo(labelHeader.snp.bottomMargin).offset(6)
-            make.trailing.leading.equalToSuperview().inset(12)
+    }
+    
+    func addSubviews(){
+        addSubview(imageView)
+        addSubview(labelHeader)
+        addSubview(labelDescription)
+    }
+    
+    func applyConstraints(){
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            imageView.heightAnchor.constraint(equalToConstant: 82),
             
-        }
+            labelHeader.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12),
+            labelHeader.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            labelHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            
+            labelDescription.topAnchor.constraint(equalTo: labelHeader.bottomAnchor, constant: 6),
+            labelDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            labelDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+        ])
+    }
+}
+
+// MARK: - Public methods
+extension ImageCell{
+    func configure (with elem:CellFillElement) {
+        labelHeader.text = elem.header
+        labelDescription.text = elem.description
+        
+        imageView.downloadImage(with: elem.image)
     }
 }
