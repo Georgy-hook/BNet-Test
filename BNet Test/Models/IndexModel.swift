@@ -13,7 +13,6 @@ struct DrugElement: Codable {
     let image: String?
     let categories: Categories?
     let name, description, documentation: String?
-    //let fields: [Field]?
 }
 
 // MARK: - Categories
