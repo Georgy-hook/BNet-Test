@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class CardViewController: UIViewController {
+final class CardViewController: UIViewController {
     
     // MARK: - Properties
     private var imageToDownload:String = ""

@@ -10,9 +10,11 @@ import UIKit
 protocol ListViewControllerProtocol: AnyObject{
     func pushCardViewController(with element:CellFillElement)
     func fetchDrugs()
+    func setCollectionView(with data:[CellFillElement])
+    func clearData()
 }
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController, LoadingView, ErrorView {
     
     //MARK: - UI Elements
     private var collectionView = DrugsCollectionView()
@@ -29,19 +31,11 @@ class ListViewController: UIViewController {
         return searchTextField
     }()
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     //MARK: - Variables
-    private var isSearchModeOn = false
-    
-    private var searchText:String? = nil {
-        didSet{
-            drugsListService.clearData()
-            collectionView.clearData()
-            drugsListService.fetchDrugsNextPage(searchText)
-        }
-    }
-    
-    private var drugsListServiceObserver: NSObjectProtocol?
-    private var drugsListService = DrugsListService.shared
+    private var isSearchModeOn = false    
+    private var presenter:ListViewPresenterProtocol = ListViewPresenter()
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -50,8 +44,8 @@ class ListViewController: UIViewController {
         addSubviews()
         applyConstraints()
         
-        fetchDrugs()
-        addObserver()
+        presenter.view = self
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +67,7 @@ class ListViewController: UIViewController {
         if isSearchModeOn{
             navigationItem.titleView = nil
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "magnifyingglass")
-            self.searchText = nil
+            presenter.search(with: nil)
             isSearchModeOn.toggle()
         } else{
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "xmark.app")
@@ -87,7 +81,6 @@ class ListViewController: UIViewController {
             isSearchModeOn.toggle()
         }
     }
-    
 }
 
 //MARK: - Layout methods
@@ -102,6 +95,7 @@ private extension ListViewController{
     func addSubviews(){
         view.addSubview(collectionView)
         view.addSubview(searchTextField)
+        view.addSubview(activityIndicator)
     }
     
     func applyConstraints(){
@@ -110,7 +104,11 @@ private extension ListViewController{
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
+            searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            activityIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
@@ -134,26 +132,18 @@ private extension ListViewController{
     }
 }
 
-//MARK: - Add Observer
-private extension ListViewController{
-    private func addObserver(){
-        drugsListServiceObserver = NotificationCenter.default
-            .addObserver(
-                forName: DrugsListService.didChangeNotification,
-                object: nil,
-                queue: .main
-            ) { [weak self] _ in
-                guard let self = self else { return }
-                collectionView.set(with: drugsListService.drugs)
-            }
-        collectionView.set(with: drugsListService.drugs)
-    }
-}
-
 //MARK: - ListViewControllerProtocol
 extension ListViewController:ListViewControllerProtocol{
+    func setCollectionView(with data: [CellFillElement]) {
+        collectionView.set(with: data)
+    }
+    
+    func clearData(){
+        collectionView.clearData()
+    }
+    
     func fetchDrugs() {
-        drugsListService.fetchDrugsNextPage(searchText)
+        presenter.loadNextPage()
     }
     
     func pushCardViewController(with element:CellFillElement){
@@ -167,7 +157,7 @@ extension ListViewController:ListViewControllerProtocol{
 extension ListViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let searchText = textField.text {
-            self.searchText = searchText
+            presenter.search(with: searchText)
         }
         
         textField.resignFirstResponder()

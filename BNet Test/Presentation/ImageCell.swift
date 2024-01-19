@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class ImageCell: UICollectionViewCell{
+final class ImageCell: UICollectionViewCell{
     
     //MARK: - UI Elements
     private let imageView: UIImageView = {

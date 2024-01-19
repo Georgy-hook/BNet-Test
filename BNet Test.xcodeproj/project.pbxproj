@@ -21,6 +21,8 @@
 		66643FE629FDA3AA00C831CC /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FE529FDA3AA00C831CC /* UIColor + hex.swift */; };
 		66643FF329FDB7A000C831CC /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66643FF229FDB7A000C831CC /* IndexModel.swift */; };
 		666F020C2B5A8F9100B57B18 /* ListViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F020B2B5A8F9100B57B18 /* ListViewPresenter.swift */; };
+		666F02122B5A94C200B57B18 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F020F2B5A94C200B57B18 /* LoadingView.swift */; };
+		666F02132B5A94C200B57B18 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F02102B5A94C200B57B18 /* ErrorView.swift */; };
 		666F2C8A2B554029005F48A8 /* URlSession + URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F2C892B554029005F48A8 /* URlSession + URLRequest.swift */; };
 		666F2C8C2B55417D005F48A8 /* DrugsListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F2C8B2B55417D005F48A8 /* DrugsListService.swift */; };
 		666F2C8F2B554840005F48A8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 666F2C8E2B554840005F48A8 /* Kingfisher */; };
@@ -66,6 +68,8 @@
 		66643FE529FDA3AA00C831CC /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		66643FF229FDB7A000C831CC /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
 		666F020B2B5A8F9100B57B18 /* ListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresenter.swift; sourceTree = "<group>"; };
+		666F020F2B5A94C200B57B18 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		666F02102B5A94C200B57B18 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		666F2C892B554029005F48A8 /* URlSession + URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URlSession + URLRequest.swift"; sourceTree = "<group>"; };
 		666F2C8B2B55417D005F48A8 /* DrugsListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsListService.swift; sourceTree = "<group>"; };
 		666F2C902B55553B005F48A8 /* UImage + kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImage + kingfisher.swift"; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 				666F2C892B554029005F48A8 /* URlSession + URLRequest.swift */,
 				666F2C902B55553B005F48A8 /* UImage + kingfisher.swift */,
 				664A8ED52B51756B009D3AE0 /* GeometricParams.swift */,
+				666F020D2B5A94C200B57B18 /* Protocols */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -208,6 +213,15 @@
 				66DEF55F29FE902D00DD044F /* ItemModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		666F020D2B5A94C200B57B18 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				666F020F2B5A94C200B57B18 /* LoadingView.swift */,
+				666F02102B5A94C200B57B18 /* ErrorView.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,8 +364,10 @@
 				66643FB329FD479E00C831CC /* ListViewController.swift in Sources */,
 				66A790752A012A00008B46B5 /* CardViewController.swift in Sources */,
 				666F020C2B5A8F9100B57B18 /* ListViewPresenter.swift in Sources */,
+				666F02122B5A94C200B57B18 /* LoadingView.swift in Sources */,
 				66643FAF29FD479E00C831CC /* AppDelegate.swift in Sources */,
 				666F2C8C2B55417D005F48A8 /* DrugsListService.swift in Sources */,
+				666F02132B5A94C200B57B18 /* ErrorView.swift in Sources */,
 				666F2C8A2B554029005F48A8 /* URlSession + URLRequest.swift in Sources */,
 				666F2C932B555611005F48A8 /* Constants.swift in Sources */,
 				664A8ED42B5174A1009D3AE0 /* DrugsCollectionView.swift in Sources */,
