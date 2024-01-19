@@ -12,7 +12,7 @@ final class DrugsCollectionView: UICollectionView{
     private let params = GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, cellSpacing: 15)
     private var cells:[CellFillElement] = []
     
-    weak var delegateVC: ViewControllerProtocol?
+    weak var delegateVC: ListViewControllerProtocol?
     
     // MARK: - Initiliazation
     init() {

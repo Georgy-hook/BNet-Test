@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ListViewController.swift
 //  BNet Test
 //
 //  Created by Georgy on 29.04.2023.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol ViewControllerProtocol: AnyObject{
+protocol ListViewControllerProtocol: AnyObject{
     func pushCardViewController(with element:CellFillElement)
     func fetchDrugs()
 }
 
-class ViewController: UIViewController {
+class ListViewController: UIViewController {
     
     //MARK: - UI Elements
     private var collectionView = DrugsCollectionView()
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - Layout methods
-private extension ViewController{
+private extension ListViewController{
     
     func initialize(){
         view.backgroundColor =  UIColor(named: "myGreen")
@@ -135,7 +135,7 @@ private extension ViewController{
 }
 
 //MARK: - Add Observer
-private extension ViewController{
+private extension ListViewController{
     private func addObserver(){
         drugsListServiceObserver = NotificationCenter.default
             .addObserver(
@@ -150,8 +150,8 @@ private extension ViewController{
     }
 }
 
-//MARK: - ViewControllerProtocol
-extension ViewController:ViewControllerProtocol{
+//MARK: - ListViewControllerProtocol
+extension ListViewController:ListViewControllerProtocol{
     func fetchDrugs() {
         drugsListService.fetchDrugsNextPage(searchText)
     }
@@ -164,7 +164,7 @@ extension ViewController:ViewControllerProtocol{
 }
 
 //MARK: - UITextFieldDelegate
-extension ViewController:UITextFieldDelegate{
+extension ListViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let searchText = textField.text {
             self.searchText = searchText
