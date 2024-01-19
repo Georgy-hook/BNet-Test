@@ -157,11 +157,8 @@
 		66643FE729FDAB2900C831CC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				66643FB229FD479E00C831CC /* ListViewController.swift */,
-				666F020B2B5A8F9100B57B18 /* ListViewPresenter.swift */,
-				664A8ED32B5174A1009D3AE0 /* DrugsCollectionView.swift */,
-				66A790742A012A00008B46B5 /* CardViewController.swift */,
-				66643FE329FD56A800C831CC /* ImageCell.swift */,
+				666F02152B5AA6E200B57B18 /* Card */,
+				666F02142B5AA68900B57B18 /* List */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -222,6 +219,25 @@
 				666F02102B5A94C200B57B18 /* ErrorView.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		666F02142B5AA68900B57B18 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				66643FB229FD479E00C831CC /* ListViewController.swift */,
+				666F020B2B5A8F9100B57B18 /* ListViewPresenter.swift */,
+				664A8ED32B5174A1009D3AE0 /* DrugsCollectionView.swift */,
+				66643FE329FD56A800C831CC /* ImageCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		666F02152B5AA6E200B57B18 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				66A790742A012A00008B46B5 /* CardViewController.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

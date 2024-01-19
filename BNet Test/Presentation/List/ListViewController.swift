@@ -31,7 +31,7 @@ final class ListViewController: UIViewController, LoadingView, ErrorView {
         return searchTextField
     }()
     
-    var activityIndicator = UIActivityIndicatorView()
+    var activityIndicator = UIActivityIndicatorView(style: .large)
     
     //MARK: - Variables
     private var isSearchModeOn = false    
@@ -88,8 +88,11 @@ private extension ListViewController{
     
     func initialize(){
         view.backgroundColor =  UIColor(named: "myGreen")
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
         searchTextField.delegate = self
         collectionView.delegateVC = self
+        
     }
     
     func addSubviews(){

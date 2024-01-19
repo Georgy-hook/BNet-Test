@@ -37,8 +37,8 @@ final class ListViewPresenter: ListViewPresenterProtocol{
     
     // MARK: - Public Functions
     func viewDidLoad() {
-        state = .loading
         addObserver()
+        state = .loading
     }
     
     func loadNextPage(){
@@ -59,7 +59,9 @@ final class ListViewPresenter: ListViewPresenterProtocol{
             assertionFailure("can't move to initial state")
             
         case .loading:
-            view?.showLoading()
+            if service.drugs.isEmpty{
+                view?.showLoading()
+            }
             service.fetchDrugsNextPage(searchText)
             
         case .data(let drugs):
